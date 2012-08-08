@@ -32,7 +32,7 @@ public class Cliente implements Serializable {
     private String nombre;
     private String correo;
     private Long telefono;
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "miCliente")
     private Collection<OrdenCompra> misOrdenes;
 
     @Column(unique = true)

@@ -16,6 +16,7 @@ public class ClienteTableListener implements ListSelectionListener {
     // It is necessary to keep the table since it is not possible
     // to determine the table from the event's source
     public ClienteTableListener(MisClientes form) {
+        super();
         this.form = form;
     }
 

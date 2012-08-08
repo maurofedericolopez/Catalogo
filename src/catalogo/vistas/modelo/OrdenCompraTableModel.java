@@ -20,6 +20,7 @@ public class OrdenCompraTableModel extends AbstractTableModel {
     private OrdenCompraJpaController controlador;
 
     public OrdenCompraTableModel() {
+        super();
         this.controlador = Catalogo.getOrdenCompraC();
         this.ordenes = (List<OrdenCompra>) this.controlador.findOrdenCompraEntities();
     }

@@ -20,6 +20,7 @@ public class ClienteTableModel extends AbstractTableModel {
     private ClienteJpaController controlador;
 
     public ClienteTableModel() {
+        super();
         this.controlador = Catalogo.getClienteC();
         this.clientes = (List<Cliente>) this.controlador.findClienteEntities();
     }

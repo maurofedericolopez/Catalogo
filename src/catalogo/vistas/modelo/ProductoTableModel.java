@@ -21,6 +21,7 @@ public class ProductoTableModel extends AbstractTableModel {
     private ProductoJpaController controlador;
 
     public ProductoTableModel() {
+        super();
         this.controlador = Catalogo.getProductoC();
         this.productos = (List<Producto>) this.controlador.findProductoEntities();
     }
