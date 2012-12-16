@@ -5,12 +5,12 @@
     <class>catalogo.modelo.Producto</class>
     <class>catalogo.modelo.OrdenCompra</class>
     <class>catalogo.modelo.Cliente</class>
+    <class>catalogo.modelo.ProductoOrdenCompra</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/catalogo"/>
       <property name="javax.persistence.jdbc.password" value="catalogo"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="catalogo"/>
-      <property name="eclipselink.ddl-generation" value="create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

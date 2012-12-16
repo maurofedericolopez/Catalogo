@@ -1,25 +1,22 @@
 package catalogo.vistas;
 
+import java.awt.BorderLayout;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JInternalFrame;
+import javax.swing.JComponent;
 
 /**
  *
  * @author Mauro Federico Lopez
  */
-public class Proveedor extends javax.swing.JFrame {
+public class ProveedorUI extends javax.swing.JFrame {
 
-    private MisClientes misClientes;
     /**
-     * Creates new form Proveedor
+     * Creates new form ProveedorUI
      */
-    public Proveedor() {
+    public ProveedorUI() {
         initComponents();
-        misClientes = new MisClientes();
-        misClientes.setVisible(false);
-        desktopPane.add(misClientes);
     }
 
     /**
@@ -31,14 +28,13 @@ public class Proveedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         jmiArchivo = new javax.swing.JMenu();
         jmiVolver = new javax.swing.JMenuItem();
         jmiSalir = new javax.swing.JMenuItem();
-        jmiVer = new javax.swing.JMenu();
-        jmiMisProductos = new javax.swing.JMenuItem();
-        jmiMisClientes = new javax.swing.JMenuItem();
+        jmiAdministrar = new javax.swing.JMenu();
+        jmiProductos = new javax.swing.JMenuItem();
+        jmiClientes = new javax.swing.JMenuItem();
         jmiOrdenesCompra = new javax.swing.JMenuItem();
         jmAyuda = new javax.swing.JMenu();
         jmiAcercaDe = new javax.swing.JMenuItem();
@@ -63,65 +59,67 @@ public class Proveedor extends javax.swing.JFrame {
 
         menuBar.add(jmiArchivo);
 
-        jmiVer.setMnemonic('e');
-        jmiVer.setText("Ver");
+        jmiAdministrar.setMnemonic('e');
+        jmiAdministrar.setText("Administrar");
 
-        jmiMisProductos.setMnemonic('t');
-        jmiMisProductos.setText("Mis Productos");
-        jmiVer.add(jmiMisProductos);
-
-        jmiMisClientes.setMnemonic('y');
-        jmiMisClientes.setText("Mis Clientes");
-        jmiMisClientes.addActionListener(new java.awt.event.ActionListener() {
+        jmiProductos.setMnemonic('t');
+        jmiProductos.setText("Productos");
+        jmiProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiMisClientesActionPerformed(evt);
+                jmiProductosActionPerformed(evt);
             }
         });
-        jmiVer.add(jmiMisClientes);
+        jmiAdministrar.add(jmiProductos);
+
+        jmiClientes.setMnemonic('y');
+        jmiClientes.setText("Clientes");
+        jmiClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiClientesActionPerformed(evt);
+            }
+        });
+        jmiAdministrar.add(jmiClientes);
 
         jmiOrdenesCompra.setMnemonic('p');
         jmiOrdenesCompra.setText("Órdenes de Compra");
-        jmiVer.add(jmiOrdenesCompra);
+        jmiAdministrar.add(jmiOrdenesCompra);
 
-        menuBar.add(jmiVer);
+        menuBar.add(jmiAdministrar);
 
         jmAyuda.setMnemonic('h');
         jmAyuda.setText("Ayuda");
 
         jmiAcercaDe.setMnemonic('a');
         jmiAcercaDe.setText("Acerca De");
+        jmiAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAcercaDeActionPerformed(evt);
+            }
+        });
         jmAyuda.add(jmiAcercaDe);
 
         menuBar.add(jmAyuda);
 
         setJMenuBar(menuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
-        System.exit(0);
+        
     }//GEN-LAST:event_jmiSalirActionPerformed
 
-    private void jmiMisClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMisClientesActionPerformed
-        try {
-            misClientes.setVisible(true);
-            misClientes.setSelected(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jmiMisClientesActionPerformed
+    private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
+        agregarComponenteAlCentro(new AdministrarClientesUI());
+    }//GEN-LAST:event_jmiClientesActionPerformed
+
+    private void jmiAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAcercaDeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiAcercaDeActionPerformed
+
+    private void jmiProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProductosActionPerformed
+        agregarComponenteAlCentro(new AdministrarProductosUI());
+    }//GEN-LAST:event_jmiProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,13 +142,13 @@ public class Proveedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -161,21 +159,28 @@ public class Proveedor extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                new Proveedor().setVisible(true);
+                new ProveedorUI().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu jmAyuda;
     private javax.swing.JMenuItem jmiAcercaDe;
+    private javax.swing.JMenu jmiAdministrar;
     private javax.swing.JMenu jmiArchivo;
-    private javax.swing.JMenuItem jmiMisClientes;
-    private javax.swing.JMenuItem jmiMisProductos;
+    private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiOrdenesCompra;
+    private javax.swing.JMenuItem jmiProductos;
     private javax.swing.JMenuItem jmiSalir;
-    private javax.swing.JMenu jmiVer;
     private javax.swing.JMenuItem jmiVolver;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
+
+    private void agregarComponenteAlCentro(JComponent componente) {
+        getContentPane().removeAll();
+        add(componente, BorderLayout.CENTER);
+        componente.setVisible(true);
+        componente.updateUI();
+        pack();
+    }
 }

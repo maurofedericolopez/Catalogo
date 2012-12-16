@@ -1,33 +1,32 @@
 package catalogo.vistas.modelo;
 
 import catalogo.Catalogo;
-import catalogo.controladores.ClienteJpaController;
-import catalogo.controladores.exceptions.NonexistentEntityException;
+import catalogo.controladores.ClientesController;
 import catalogo.modelo.Cliente;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author Mauro Federico Lopez
  */
-public class ClienteTableModel extends AbstractTableModel {
+public class ClienteTableModel extends AbstractTableModel implements Observer {
 
-    private String[] columnas = {"N°Cliente","Apellido y Nombre","Correo","Teléfono"};
-    private List<Cliente> clientes;
-    private ClienteJpaController controlador;
+    private String[] columnas = {"Apellido", "Nombre", "Correo", "Teléfono", "Username"};
+    private ArrayList<Cliente> clientes;
+    private ClientesController controlador;
 
     public ClienteTableModel() {
         super();
-        this.controlador = Catalogo.getClienteC();
-        this.clientes = (List<Cliente>) this.controlador.findClienteEntities();
+        controlador = Catalogo.clientesController;
+        clientes = controlador.obtenerClientes();
     }
 
     @Override
     public int getRowCount() {
-        return controlador.getClienteCount();
+        return clientes.size();
     }
 
     @Override
@@ -38,15 +37,35 @@ public class ClienteTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex) {
-            case 0:
-                return clientes.get(rowIndex).getId();
-            case 1:
-                return clientes.get(rowIndex).getApellido()+" "+clientes.get(rowIndex).getNombre();
-            case 2:
+            case 0 :
+                return clientes.get(rowIndex).getApellido();
+            case 1 :
+                return clientes.get(rowIndex).getNombre();
+            case 2 :
                 return clientes.get(rowIndex).getCorreo();
-            case 3:
+            case 3 :
                 return clientes.get(rowIndex).getTelefono();
+            case 4 :
+                return clientes.get(rowIndex).getUsername();
             default:
+                return null;
+        }
+    }
+
+    @Override
+    public Class getColumnClass(int columnIndex) {
+        switch(columnIndex) {
+            case 0 :
+                return String.class;
+            case 1 :
+                return String.class;
+            case 2 :
+                return String.class;
+            case 3 :
+                return Long.class;
+            case 4 :
+                return String.class;
+            default :
                 return null;
         }
     }
@@ -61,13 +80,10 @@ public class ClienteTableModel extends AbstractTableModel {
         return columnas[columnIndex];
     }
 
-    public void eliminarCliente(int fila) {
-        try {
-            Long id = (Long) getValueAt(fila,0);
-            controlador.destroy(id);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ClienteTableModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    @Override
+    public void update(Observable o, Object arg) {
+        clientes = controlador.obtenerClientes();
+        fireTableDataChanged();
     }
 
 }

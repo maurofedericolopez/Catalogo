@@ -1,7 +1,7 @@
 package catalogo.modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -10,6 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Cliente implements Serializable {
+
     private static long serialVersionUID = 1L;
 
     /**
@@ -26,31 +27,26 @@ public class Cliente implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 45, nullable = false)
     private String apellido;
+    @Column(length = 45, nullable = false)
     private String nombre;
+    @Column(length = 150)
     private String correo;
     private Long telefono;
-    @OneToMany(mappedBy = "miCliente")
-    private Collection<OrdenCompra> misOrdenes;
-
-    @Column(unique = true)
+    @OneToMany(mappedBy = "cliente")
+    private List<OrdenCompra> ordenes;
+    @Column(length = 100, nullable = false, unique = true)
     private String username;
+    @Column(length = 100, nullable = false)
     private String password;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -61,7 +57,7 @@ public class Cliente implements Serializable {
             return false;
         }
         Cliente other = (Cliente) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -69,7 +65,21 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "catalogo.modelo.Cliente[ id=" + id + " ]";
+        return apellido + " " + nombre;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -129,17 +139,17 @@ public class Cliente implements Serializable {
     }
 
     /**
-     * @return the misOrdenes
+     * @return the ordenes
      */
-    public Collection<OrdenCompra> getMisOrdenes() {
-        return misOrdenes;
+    public List<OrdenCompra> getOrdenes() {
+        return ordenes;
     }
 
     /**
-     * @param misOrdenes the misOrdenes to set
+     * @param ordenes the ordenes to set
      */
-    public void setMisOrdenes(Collection<OrdenCompra> misOrdenes) {
-        this.misOrdenes = misOrdenes;
+    public void setOrdenes(List<OrdenCompra> ordenes) {
+        this.ordenes = ordenes;
     }
 
     /**
@@ -169,5 +179,5 @@ public class Cliente implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
 }

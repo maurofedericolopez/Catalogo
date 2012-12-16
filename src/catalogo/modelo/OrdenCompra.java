@@ -1,8 +1,8 @@
 package catalogo.modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -11,6 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 public class OrdenCompra implements Serializable {
+
     private static long serialVersionUID = 1L;
 
     /**
@@ -27,31 +28,21 @@ public class OrdenCompra implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date miFecha;
-    private Boolean enviado;
     private Long codigoEnvio;
-
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fecha;
+    private Boolean enviado;
     @ManyToOne
-    private Cliente miCliente;
-
-    @OneToMany
-    private Collection<Producto> misProductos;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Cliente cliente;
+    @OneToMany(mappedBy = "OrdenCompra")
+    private List<ProductoOrdenCompra> productosDeOrdenCompra;
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -62,7 +53,7 @@ public class OrdenCompra implements Serializable {
             return false;
         }
         OrdenCompra other = (OrdenCompra) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -70,35 +61,21 @@ public class OrdenCompra implements Serializable {
 
     @Override
     public String toString() {
-        return "catalogo.modelo.OrdenCompra[ id=" + id + " ]";
+        return "catalogo.modelo.OrdenCompra[ id=" + getId() + " ]";
     }
 
     /**
-     * @return the miFecha
+     * @return the id
      */
-    public Date getMiFecha() {
-        return miFecha;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * @param miFecha the miFecha to set
+     * @param id the id to set
      */
-    public void setMiFecha(Date miFecha) {
-        this.miFecha = miFecha;
-    }
-
-    /**
-     * @return the enviado
-     */
-    public Boolean getEnviado() {
-        return enviado;
-    }
-
-    /**
-     * @param enviado the enviado to set
-     */
-    public void setEnviado(Boolean enviado) {
-        this.enviado = enviado;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -116,31 +93,59 @@ public class OrdenCompra implements Serializable {
     }
 
     /**
-     * @return the miCliente
+     * @return the fecha
      */
-    public Cliente getMiCliente() {
-        return miCliente;
+    public Date getFecha() {
+        return fecha;
     }
 
     /**
-     * @param miCliente the miCliente to set
+     * @param fecha the fecha to set
      */
-    public void setMiCliente(Cliente miCliente) {
-        this.miCliente = miCliente;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     /**
-     * @return the misProductos
+     * @return the enviado
      */
-    public Collection<Producto> getMisProductos() {
-        return misProductos;
+    public Boolean getEnviado() {
+        return enviado;
     }
 
     /**
-     * @param misProductos the misProductos to set
+     * @param enviado the enviado to set
      */
-    public void setMisProductos(Collection<Producto> misProductos) {
-        this.misProductos = misProductos;
+    public void setEnviado(Boolean enviado) {
+        this.enviado = enviado;
     }
-    
+
+    /**
+     * @return the cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the productosDeOrdenCompra
+     */
+    public List<ProductoOrdenCompra> getProductosDeOrdenCompra() {
+        return productosDeOrdenCompra;
+    }
+
+    /**
+     * @param productosDeOrdenCompra the productosDeOrdenCompra to set
+     */
+    public void setProductosDeOrdenCompra(List<ProductoOrdenCompra> productosDeOrdenCompra) {
+        this.productosDeOrdenCompra = productosDeOrdenCompra;
+    }
+
 }

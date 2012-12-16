@@ -1,28 +1,32 @@
 package catalogo;
 
-import catalogo.controladores.ClienteJpaController;
-import catalogo.controladores.OrdenCompraJpaController;
-import catalogo.controladores.ProductoJpaController;
-import catalogo.vistas.Proveedor;
+import catalogo.controladores.ClientesController;
+import catalogo.controladores.OrdenesDeCompraController;
+import catalogo.controladores.ProductosController;
+import catalogo.vistas.ProveedorUI;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
  *
- * @author Mauro
+ * @author Mauro Federico Lopez
  */
 public class Catalogo {
 
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("CatalogoPU");
-    private static ClienteJpaController clienteC = new ClienteJpaController(emf);
-    private static ProductoJpaController productoC = new ProductoJpaController(emf);
-    private static OrdenCompraJpaController ordenCompraC = new OrdenCompraJpaController(emf);
+    public static ClientesController clientesController;
+    public static ProductosController productosController;
+    public static OrdenesDeCompraController ordenesCompraController;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Proveedor proveedor = new Proveedor();
+        clientesController = new ClientesController();
+        productosController = new ProductosController();
+        EntityManager entityManager = getEntityManagerFactory().createEntityManager();
+        ProveedorUI proveedor = new ProveedorUI();
         proveedor.setVisible(true);
         proveedor.pack();
     }
@@ -30,56 +34,8 @@ public class Catalogo {
     /**
      * @return the emf
      */
-    public static EntityManagerFactory getEmf() {
+    public static EntityManagerFactory getEntityManagerFactory() {
         return emf;
     }
 
-    /**
-     * @param aEmf the emf to set
-     */
-    public static void setEmf(EntityManagerFactory aEmf) {
-        emf = aEmf;
-    }
-
-    /**
-     * @return the clienteC
-     */
-    public static ClienteJpaController getClienteC() {
-        return clienteC;
-    }
-
-    /**
-     * @param aClienteC the clienteC to set
-     */
-    public static void setClienteC(ClienteJpaController aClienteC) {
-        clienteC = aClienteC;
-    }
-
-    /**
-     * @return the productoC
-     */
-    public static ProductoJpaController getProductoC() {
-        return productoC;
-    }
-
-    /**
-     * @param aProductoC the productoC to set
-     */
-    public static void setProductoC(ProductoJpaController aProductoC) {
-        productoC = aProductoC;
-    }
-
-    /**
-     * @return the ordenCompraC
-     */
-    public static OrdenCompraJpaController getOrdenCompraC() {
-        return ordenCompraC;
-    }
-
-    /**
-     * @param aOrdenCompraC the ordenCompraC to set
-     */
-    public static void setOrdenCompraC(OrdenCompraJpaController aOrdenCompraC) {
-        ordenCompraC = aOrdenCompraC;
-    }
 }
