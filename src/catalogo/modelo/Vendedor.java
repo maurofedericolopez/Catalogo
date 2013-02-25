@@ -9,7 +9,7 @@ import javax.persistence.*;
  * @author Mauro Federico Lopez
  */
 @Entity
-public class Cliente implements Serializable {
+public class Vendedor implements Serializable {
 
     private static long serialVersionUID = 1L;
 
@@ -27,21 +27,22 @@ public class Cliente implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
     @Id
+    @Column(name = "idVendedor")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(length = 45, nullable = false)
+    @Column(length = 50, nullable = false)
     private String apellido;
-    @Column(length = 45, nullable = false)
+    @Column(length = 50, nullable = false)
     private String nombre;
     @Column(length = 150)
     private String correo;
     private Long telefono;
-    @OneToMany(mappedBy = "cliente")
-    private List<OrdenCompra> ordenes;
     @Column(length = 100, nullable = false, unique = true)
     private String username;
     @Column(length = 100, nullable = false)
     private String password;
+    @OneToMany(mappedBy = "vendedor")
+    private List<OrdenCompra> ordenes;
 
     @Override
     public int hashCode() {
@@ -53,10 +54,10 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+        if (!(object instanceof Vendedor)) {
             return false;
         }
-        Cliente other = (Cliente) object;
+        Vendedor other = (Vendedor) object;
         if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -93,7 +94,7 @@ public class Cliente implements Serializable {
      * @param apellido the apellido to set
      */
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido = apellido.toUpperCase();
     }
 
     /**
@@ -107,7 +108,7 @@ public class Cliente implements Serializable {
      * @param nombre the nombre to set
      */
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
     /**
@@ -139,20 +140,6 @@ public class Cliente implements Serializable {
     }
 
     /**
-     * @return the ordenes
-     */
-    public List<OrdenCompra> getOrdenes() {
-        return ordenes;
-    }
-
-    /**
-     * @param ordenes the ordenes to set
-     */
-    public void setOrdenes(List<OrdenCompra> ordenes) {
-        this.ordenes = ordenes;
-    }
-
-    /**
      * @return the username
      */
     public String getUsername() {
@@ -163,7 +150,7 @@ public class Cliente implements Serializable {
      * @param username the username to set
      */
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.toUpperCase();
     }
 
     /**
@@ -178,6 +165,20 @@ public class Cliente implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the ordenes
+     */
+    public List<OrdenCompra> getOrdenes() {
+        return ordenes;
+    }
+
+    /**
+     * @param ordenes the ordenes to set
+     */
+    public void setOrdenes(List<OrdenCompra> ordenes) {
+        this.ordenes = ordenes;
     }
 
 }

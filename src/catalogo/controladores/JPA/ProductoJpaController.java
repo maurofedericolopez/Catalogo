@@ -1,32 +1,33 @@
 package catalogo.controladores.JPA;
 
+import catalogo.Catalogo;
 import catalogo.controladores.JPA.exceptions.NonexistentEntityException;
 import catalogo.modelo.Producto;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
+import java.util.Observable;
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
  *
- * @author Mauro
+ * @author Mauro Federico Lopez
  */
-public class ProductoJpaController implements Serializable {
+public class ProductoJpaController extends Observable  implements Serializable {
 
-    public ProductoJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public ProductoJpaController() {
+        this.emf = Catalogo.getEmf();
     }
     private EntityManagerFactory emf = null;
 
-    public EntityManager getEntityManager() {
+    private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public void create(Producto producto) {
+    public void crearProducto(Producto producto) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -37,10 +38,11 @@ public class ProductoJpaController implements Serializable {
             if (em != null) {
                 em.close();
             }
+            notificarCambios();
         }
     }
 
-    public void edit(Producto producto) throws NonexistentEntityException, Exception {
+    public void editarProducto(Producto producto) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -60,10 +62,11 @@ public class ProductoJpaController implements Serializable {
             if (em != null) {
                 em.close();
             }
+            notificarCambios();
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destruirProducto(Long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -81,14 +84,15 @@ public class ProductoJpaController implements Serializable {
             if (em != null) {
                 em.close();
             }
+            notificarCambios();
         }
     }
 
-    public List<Producto> findProductoEntities() {
+    private List<Producto> findProductoEntities() {
         return findProductoEntities(true, -1, -1);
     }
 
-    public List<Producto> findProductoEntities(int maxResults, int firstResult) {
+    private List<Producto> findProductoEntities(int maxResults, int firstResult) {
         return findProductoEntities(false, maxResults, firstResult);
     }
 
@@ -108,7 +112,7 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public Producto findProducto(Long id) {
+    private Producto findProducto(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Producto.class, id);
@@ -117,7 +121,7 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public int getProductoCount() {
+    private int getProductoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
@@ -125,6 +129,49 @@ public class ProductoJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+
+    public ArrayList<Producto> obtenerProductos() {
+        ArrayList<Producto> productos = new ArrayList();
+        Object[] array = findProductoEntities().toArray();
+        for(Object p : array)
+            productos.add((Producto) p);
+        return productos;
+    }
+
+    private void notificarCambios() {
+        setChanged();
+        notifyObservers();
+    }
+
+    public void registrarNuevoProducto(String codigo, String nombre, String descripcion, Double precio, byte[] imagen) throws Exception {
+        if(codigoValido(codigo)) {
+            Producto producto = new Producto();
+            producto.setCodigo(codigo);
+            producto.setNombre(nombre);
+            producto.setDescripcion(descripcion);
+            producto.setPrecio(precio);
+            producto.setImagen(imagen);
+            crearProducto(producto);
+        } else {
+            throw new Exception("El código ya está registrado.");
+        }
+    }
+
+    private Boolean codigoValido(String codigo) {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Producto> c = cb.createQuery(Producto.class);
+            Root<Producto> p = c.from(Producto.class);
+            c.select(p).where(cb.equal(p.get("codigo"), codigo.toUpperCase()));
+            em.createQuery(c).getSingleResult();
+            return false;
+        } catch (NoResultException ex) {
+            return true;
         } finally {
             em.close();
         }

@@ -2,41 +2,38 @@
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="nuevoProductoUI">
+    <Container class="javax.swing.JDialog" name="nuevoVendedorUI">
       <Properties>
-        <Property name="title" type="java.lang.String" value="Nuevo producto"/>
-        <Property name="locationByPlatform" type="boolean" value="true"/>
+        <Property name="title" type="java.lang.String" value="Nuevo cliente"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[212, 203]"/>
+          <Dimension value="[257, 201]"/>
         </Property>
-        <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="etiquetaUsername" alignment="1" max="32767" attributes="0"/>
+                      <Component id="etiquetaPassword" alignment="1" max="32767" attributes="0"/>
+                      <Component id="etiquetaTelefono" alignment="1" max="32767" attributes="0"/>
+                      <Component id="etiquetaCorreo" alignment="1" max="32767" attributes="0"/>
+                      <Component id="etiquetaNombre" alignment="1" max="32767" attributes="0"/>
+                      <Component id="etiquetaApellido" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="etiquetaDescripcion" max="32767" attributes="0"/>
-                              <Component id="etiquetaImagen" alignment="1" max="32767" attributes="0"/>
-                              <Component id="etiquetaPrecio" alignment="1" max="32767" attributes="0"/>
-                              <Component id="etiquetaNombre" alignment="1" max="32767" attributes="0"/>
-                              <Component id="etiquetaCodigo" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="campoCodigo" max="32767" attributes="0"/>
-                              <Component id="campoNombre" max="32767" attributes="0"/>
-                              <Component id="campoDescripcion" max="32767" attributes="0"/>
-                              <Component id="campoPrecio" max="32767" attributes="0"/>
-                              <Component id="botonImagen" alignment="0" pref="132" max="32767" attributes="0"/>
-                              <Component id="campoImagen" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                      <Component id="botonGuardarCliente" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="campoApellido" max="32767" attributes="0"/>
+                          <Component id="campoNombre" max="32767" attributes="0"/>
+                          <Component id="campoCorreo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoUsername" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoTelefono" max="32767" attributes="0"/>
+                          <Component id="campoPassword" min="-2" pref="143" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="botonGuardarProducto" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -47,45 +44,48 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="etiquetaCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="etiquetaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="etiquetaDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="campoPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="etiquetaPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="campoUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="etiquetaImagen" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="campoImagen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="campoPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etiquetaPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botonImagen" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botonGuardarProducto" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonGuardarCliente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="etiquetaCodigo">
+        <Component class="javax.swing.JLabel" name="etiquetaApellido">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
+            <Property name="text" type="java.lang.String" value="Apellido"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoCodigo">
+        <Component class="javax.swing.JTextField" name="campoApellido">
         </Component>
         <Component class="javax.swing.JLabel" name="etiquetaNombre">
           <Properties>
@@ -94,81 +94,54 @@
         </Component>
         <Component class="javax.swing.JTextField" name="campoNombre">
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaDescripcion">
+        <Component class="javax.swing.JLabel" name="etiquetaCorreo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Descripci&#xf3;n"/>
+            <Property name="text" type="java.lang.String" value="Correo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="campoDescripcion">
+        <Component class="javax.swing.JTextField" name="campoCorreo">
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaPrecio">
+        <Component class="javax.swing.JLabel" name="etiquetaTelefono">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Precio"/>
+            <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="campoPrecio">
+        <Component class="javax.swing.JFormattedTextField" name="campoTelefono">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="#,##0.00" subtype="-1" type="4"/>
+              <Format format="##########" subtype="-1" type="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="etiquetaImagen">
+        <Component class="javax.swing.JLabel" name="etiquetaUsername">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Imagen"/>
+            <Property name="text" type="java.lang.String" value="Nombre de usuario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="botonImagen">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Abrir Imagen"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonImagenActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="campoUsername">
         </Component>
-        <Component class="javax.swing.JButton" name="botonGuardarProducto">
+        <Component class="javax.swing.JLabel" name="etiquetaPassword">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="campoPassword">
+        </Component>
+        <Component class="javax.swing.JButton" name="botonGuardarCliente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarProductoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarClienteActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="campoImagen">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="10" style="0"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JFileChooser" name="selectorImagen">
-      <Properties>
-        <Property name="currentDirectory" type="java.io.File" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new File (&quot;.&quot;)" type="code"/>
-        </Property>
-        <Property name="dialogTitle" type="java.lang.String" value="Abrir"/>
-        <Property name="fileFilter" type="javax.swing.filechooser.FileFilter" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new FileNameExtensionFilter(&quot;.png&quot;,&quot;png&quot;)" type="code"/>
-        </Property>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[600, 400]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[600, 400]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[600, 400]"/>
-        </Property>
-      </Properties>
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-        <TitledBorder justification="2" title="Productos">
+        <TitledBorder justification="2" title="Vendedores">
           <Font PropertyName="font" name="Tahoma" size="20" style="1"/>
         </TitledBorder>
       </Border>
@@ -210,10 +183,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tablaProductos">
+        <Component class="javax.swing.JTable" name="tablaVendedores">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new catalogo.vistas.modelo.ProductoTableModel()" type="code"/>
+              <Connection code="new catalogo.vistas.modelo.VendedorTableModel()" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -242,20 +215,20 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="botonNuevoProducto">
+        <Component class="javax.swing.JButton" name="botonNuevoVendedor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nuevo Producto"/>
+            <Property name="text" type="java.lang.String" value="Nuevo Vendedor"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonNuevoProductoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonNuevoVendedorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botonEliminarProducto">
+        <Component class="javax.swing.JButton" name="botonEliminarVendedor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar Producto"/>
+            <Property name="text" type="java.lang.String" value="Eliminar Vendedor"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminarProductoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminarVendedorActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

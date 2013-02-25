@@ -1,25 +1,28 @@
 package catalogo.vistas.modelo;
 
 import catalogo.Catalogo;
-import catalogo.controladores.ProductosController;
+import catalogo.controladores.JPA.ProductoJpaController;
 import catalogo.modelo.Producto;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author Mauro Federico Lopez
  */
-public class ProductoTableModel extends AbstractTableModel {
+public class ProductoTableModel extends AbstractTableModel implements Observer {
 
-    private String[] columnas = {"Código", "Nombre", "Descripción", "Precio", "Ruta Imagen"};
+    private String[] columnas = {"Código", "Nombre", "Descripción", "Precio"};
     private ArrayList<Producto> productos;
-    private ProductosController controlador;
+    private ProductoJpaController productoJpaController;
 
     public ProductoTableModel() {
         super();
-        controlador = Catalogo.productosController;
-        productos = controlador.obtenerProductos();
+        productoJpaController = Catalogo.getProductoJpaController();
+        productoJpaController.addObserver(this);
+        productos = productoJpaController.obtenerProductos();
     }
 
     @Override
@@ -48,8 +51,6 @@ public class ProductoTableModel extends AbstractTableModel {
                 return productos.get(rowIndex).getDescripcion();
             case 3:
                 return productos.get(rowIndex).getPrecio();
-            case 4:
-                return productos.get(rowIndex).getPathImage();
             default:
                 return null;
         }
@@ -65,9 +66,9 @@ public class ProductoTableModel extends AbstractTableModel {
             case 2 :
                 return String.class;
             case 3 :
-                return Double.class;
-            case 4 :
                 return String.class;
+            case 4 :
+                return Double.class;
             default :
                 return null;
         }
@@ -76,6 +77,16 @@ public class ProductoTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        productos = productoJpaController.obtenerProductos();
+        fireTableDataChanged();
+    }
+
+    public Producto obtenerProducto(Integer filaSeleccionada) {
+        return productos.get(filaSeleccionada);
     }
 
 }

@@ -1,20 +1,33 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package catalogo.vistas;
+
+import catalogo.Catalogo;
+import catalogo.controladores.JPA.ProductoJpaController;
+import catalogo.modelo.Producto;
+import catalogo.vistas.modelo.ProductoTableModel;
+import java.awt.FlowLayout;
+import java.io.File;
+import java.io.FileInputStream;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author Mauro
+ * @author Mauro Federico Lopez
  */
 public class AdministrarProductosUI extends javax.swing.JPanel {
+
+    private ProductoJpaController productoJpaController;
+    private ProductoTableModel productoTableModel;
+    private byte[] imagen = null;
 
     /**
      * Creates new form AdministrarProductosUI
      */
     public AdministrarProductosUI() {
         initComponents();
+        productoJpaController = Catalogo.getProductoJpaController();
+        productoTableModel = new ProductoTableModel();
+        tablaProductos.setModel(productoTableModel);
     }
 
     /**
@@ -26,19 +39,127 @@ public class AdministrarProductosUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        etiquetaTitulo = new javax.swing.JLabel();
+        nuevoProductoUI = new javax.swing.JDialog();
+        etiquetaCodigo = new javax.swing.JLabel();
+        campoCodigo = new javax.swing.JTextField();
+        etiquetaNombre = new javax.swing.JLabel();
+        campoNombre = new javax.swing.JTextField();
+        etiquetaDescripcion = new javax.swing.JLabel();
+        campoDescripcion = new javax.swing.JTextField();
+        etiquetaPrecio = new javax.swing.JLabel();
+        campoPrecio = new javax.swing.JFormattedTextField();
+        etiquetaImagen = new javax.swing.JLabel();
+        botonImagen = new javax.swing.JButton();
+        botonGuardarProducto = new javax.swing.JButton();
+        campoImagen = new javax.swing.JTextField();
+        selectorImagen = new javax.swing.JFileChooser();
         jsp = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
         panelBotones = new javax.swing.JPanel();
         botonNuevoProducto = new javax.swing.JButton();
         botonEliminarProducto = new javax.swing.JButton();
 
-        setLayout(new java.awt.BorderLayout());
+        nuevoProductoUI.setTitle("Nuevo producto");
+        nuevoProductoUI.setLocationByPlatform(true);
+        nuevoProductoUI.setMinimumSize(new java.awt.Dimension(212, 203));
+        nuevoProductoUI.setResizable(false);
 
-        etiquetaTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        etiquetaTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiquetaTitulo.setText("Productos");
-        add(etiquetaTitulo, java.awt.BorderLayout.PAGE_START);
+        etiquetaCodigo.setText("Código");
+
+        etiquetaNombre.setText("Nombre");
+
+        etiquetaDescripcion.setText("Descripción");
+
+        etiquetaPrecio.setText("Precio");
+
+        campoPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+
+        etiquetaImagen.setText("Imagen");
+
+        botonImagen.setText("Abrir Imagen");
+        botonImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonImagenActionPerformed(evt);
+            }
+        });
+
+        botonGuardarProducto.setText("Guardar");
+        botonGuardarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarProductoActionPerformed(evt);
+            }
+        });
+
+        campoImagen.setEditable(false);
+        campoImagen.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+
+        javax.swing.GroupLayout nuevoProductoUILayout = new javax.swing.GroupLayout(nuevoProductoUI.getContentPane());
+        nuevoProductoUI.getContentPane().setLayout(nuevoProductoUILayout);
+        nuevoProductoUILayout.setHorizontalGroup(
+            nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nuevoProductoUILayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(nuevoProductoUILayout.createSequentialGroup()
+                        .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiquetaImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiquetaPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiquetaNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiquetaCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoCodigo)
+                            .addComponent(campoNombre)
+                            .addComponent(campoDescripcion)
+                            .addComponent(campoPrecio)
+                            .addComponent(botonImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(campoImagen)))
+                    .addComponent(botonGuardarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        nuevoProductoUILayout.setVerticalGroup(
+            nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nuevoProductoUILayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaCodigo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaDescripcion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiquetaPrecio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(nuevoProductoUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaImagen)
+                    .addComponent(campoImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonImagen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonGuardarProducto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        selectorImagen.setCurrentDirectory(new File ("."));
+        selectorImagen.setDialogTitle("Abrir");
+        selectorImagen.setFileFilter(new FileNameExtensionFilter(".png","png"));
+        selectorImagen.setMaximumSize(new java.awt.Dimension(600, 400));
+        selectorImagen.setMinimumSize(new java.awt.Dimension(600, 400));
+        selectorImagen.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 20))); // NOI18N
+        setMaximumSize(new java.awt.Dimension(700, 500));
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        setLayout(new java.awt.BorderLayout());
 
         tablaProductos.setModel(new catalogo.vistas.modelo.ProductoTableModel());
         tablaProductos.getTableHeader().setReorderingAllowed(false);
@@ -50,34 +171,106 @@ public class AdministrarProductosUI extends javax.swing.JPanel {
         panelBotones.setMinimumSize(new java.awt.Dimension(100, 23));
 
         botonNuevoProducto.setText("Nuevo Producto");
+        botonNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonNuevoProductoActionPerformed(evt);
+            }
+        });
+        panelBotones.add(botonNuevoProducto);
 
         botonEliminarProducto.setText("Eliminar Producto");
-
-        javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
-        panelBotones.setLayout(panelBotonesLayout);
-        panelBotonesLayout.setHorizontalGroup(
-            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBotonesLayout.createSequentialGroup()
-                .addComponent(botonNuevoProducto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonEliminarProducto)
-                .addGap(0, 454, Short.MAX_VALUE))
-        );
-        panelBotonesLayout.setVerticalGroup(
-            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(botonNuevoProducto)
-                .addComponent(botonEliminarProducto))
-        );
+        botonEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarProductoActionPerformed(evt);
+            }
+        });
+        panelBotones.add(botonEliminarProducto);
 
         add(panelBotones, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoProductoActionPerformed
+        campoCodigo.setText("");
+        campoNombre.setText("");
+        campoDescripcion.setText("");
+        campoPrecio.setValue(0.0);
+        campoImagen.setText("");
+        nuevoProductoUI.setVisible(true);
+        nuevoProductoUI.pack();
+    }//GEN-LAST:event_botonNuevoProductoActionPerformed
+
+    private void botonGuardarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarProductoActionPerformed
+        try {
+            String codigo = campoCodigo.getText();
+            String nombre = campoNombre.getText();
+            String descripcion = campoDescripcion.getText();
+            Double precio = ((Number)campoPrecio.getValue()).doubleValue();
+            productoJpaController.registrarNuevoProducto(codigo, nombre, descripcion, precio, imagen);
+            nuevoProductoUI.setVisible(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonGuardarProductoActionPerformed
+
+    private void botonImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonImagenActionPerformed
+        try {
+            Integer returnVal = selectorImagen.showOpenDialog(this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = selectorImagen.getSelectedFile();
+                FileInputStream is = new FileInputStream(file);
+                imagen = new byte[(int) file.length()];
+                int readers = is.read(imagen);
+                campoImagen.setText(file.getName());
+
+                JLabel label = new JLabel();
+                label.setIcon(new ImageIcon(imagen));
+                JFrame frame = new JFrame("Imagen");
+                frame.setLocationByPlatform(true);
+                frame.setLayout(new FlowLayout());
+                frame.add(label);
+                frame.setVisible(true);
+                frame.pack();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Problemas para abrir el archivo.", "Error de archivo", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonImagenActionPerformed
+
+    private void botonEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarProductoActionPerformed
+        try {
+            Integer filaSeleccionada = tablaProductos.getSelectedRow();
+            if (filaSeleccionada >= 0) {
+                Producto producto = productoTableModel.obtenerProducto(filaSeleccionada);
+                productoJpaController.destruirProducto(producto.getId());
+            } else {
+                throw new Exception("No ha seleccionado ningún producto.");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            tablaProductos.clearSelection();
+        }
+    }//GEN-LAST:event_botonEliminarProductoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEliminarProducto;
+    private javax.swing.JButton botonGuardarProducto;
+    private javax.swing.JButton botonImagen;
     private javax.swing.JButton botonNuevoProducto;
-    private javax.swing.JLabel etiquetaTitulo;
+    private javax.swing.JTextField campoCodigo;
+    private javax.swing.JTextField campoDescripcion;
+    private javax.swing.JTextField campoImagen;
+    private javax.swing.JTextField campoNombre;
+    private javax.swing.JFormattedTextField campoPrecio;
+    private javax.swing.JLabel etiquetaCodigo;
+    private javax.swing.JLabel etiquetaDescripcion;
+    private javax.swing.JLabel etiquetaImagen;
+    private javax.swing.JLabel etiquetaNombre;
+    private javax.swing.JLabel etiquetaPrecio;
     private javax.swing.JScrollPane jsp;
+    private javax.swing.JDialog nuevoProductoUI;
     private javax.swing.JPanel panelBotones;
+    private javax.swing.JFileChooser selectorImagen;
     private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 }

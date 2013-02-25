@@ -25,13 +25,14 @@ public class ProductoOrdenCompra implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
     @Id
+    @Column(name = "idProductoOrdenCompra")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
     private Producto producto;
     @ManyToOne
     private OrdenCompra OrdenCompra;
-    private Integer cantidad;
+    private Long cantidad;
 
     @Override
     public int hashCode() {
@@ -103,15 +104,19 @@ public class ProductoOrdenCompra implements Serializable {
     /**
      * @return the cantidad
      */
-    public Integer getCantidad() {
+    public Long getCantidad() {
         return cantidad;
     }
 
     /**
      * @param cantidad the cantidad to set
      */
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Double getMontoTotal() {
+        return producto.getPrecio() * cantidad;
     }
 
 }

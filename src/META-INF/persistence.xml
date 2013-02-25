@@ -4,8 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>catalogo.modelo.Producto</class>
     <class>catalogo.modelo.OrdenCompra</class>
-    <class>catalogo.modelo.Cliente</class>
     <class>catalogo.modelo.ProductoOrdenCompra</class>
+    <class>catalogo.modelo.Vendedor</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/catalogo"/>
       <property name="javax.persistence.jdbc.password" value="catalogo"/>

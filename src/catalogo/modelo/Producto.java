@@ -26,16 +26,18 @@ public class Producto implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
     @Id
+    @Column(name = "idProducto")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long codigo;
-    @Column(length = 45, nullable = false)
+    @Column(length = 20, nullable = false)
+    private String codigo;
+    @Column(length = 50, nullable = true)
     private String nombre;
-    @Column(length = 150)
+    @Column(length = 150, nullable = true)
     private String descripcion;
     @Column(nullable = false)
     private Double precio;
-    private String pathImage;
+    private byte[] imagen;
 
     @Override
     public int hashCode() {
@@ -59,7 +61,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "catalogo.modelo.Producto[ id=" + getId() + " ]";
+        return getNombre();
     }
 
     /**
@@ -79,15 +81,15 @@ public class Producto implements Serializable {
     /**
      * @return the codigo
      */
-    public Long getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
     /**
      * @param codigo the codigo to set
      */
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo.toUpperCase();
     }
 
     /**
@@ -101,7 +103,7 @@ public class Producto implements Serializable {
      * @param nombre the nombre to set
      */
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
     /**
@@ -115,7 +117,7 @@ public class Producto implements Serializable {
      * @param descripcion the descripcion to set
      */
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.descripcion = descripcion.toUpperCase();
     }
 
     /**
@@ -133,17 +135,17 @@ public class Producto implements Serializable {
     }
 
     /**
-     * @return the pathImage
+     * @return the imagen
      */
-    public String getPathImage() {
-        return pathImage;
+    public byte[] getImagen() {
+        return imagen;
     }
 
     /**
-     * @param pathImage the pathImage to set
+     * @param imagen the imagen to set
      */
-    public void setPathImage(String pathImage) {
-        this.pathImage = pathImage;
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 
 }

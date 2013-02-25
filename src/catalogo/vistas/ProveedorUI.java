@@ -29,35 +29,17 @@ public class ProveedorUI extends javax.swing.JFrame {
     private void initComponents() {
 
         menuBar = new javax.swing.JMenuBar();
-        jmiArchivo = new javax.swing.JMenu();
-        jmiVolver = new javax.swing.JMenuItem();
-        jmiSalir = new javax.swing.JMenuItem();
         jmiAdministrar = new javax.swing.JMenu();
         jmiProductos = new javax.swing.JMenuItem();
         jmiClientes = new javax.swing.JMenuItem();
         jmiOrdenesCompra = new javax.swing.JMenuItem();
-        jmAyuda = new javax.swing.JMenu();
-        jmiAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jmiArchivo.setMnemonic('f');
-        jmiArchivo.setText("Archivo");
-
-        jmiVolver.setMnemonic('a');
-        jmiVolver.setText("Volver");
-        jmiArchivo.add(jmiVolver);
-
-        jmiSalir.setMnemonic('x');
-        jmiSalir.setText("Salir");
-        jmiSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiSalirActionPerformed(evt);
-            }
-        });
-        jmiArchivo.add(jmiSalir);
-
-        menuBar.add(jmiArchivo);
+        setTitle("Proveedor");
+        setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(700, 500));
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
         jmiAdministrar.setMnemonic('e');
         jmiAdministrar.setText("Administrar");
@@ -82,44 +64,31 @@ public class ProveedorUI extends javax.swing.JFrame {
 
         jmiOrdenesCompra.setMnemonic('p');
         jmiOrdenesCompra.setText("Órdenes de Compra");
+        jmiOrdenesCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiOrdenesCompraActionPerformed(evt);
+            }
+        });
         jmiAdministrar.add(jmiOrdenesCompra);
 
         menuBar.add(jmiAdministrar);
-
-        jmAyuda.setMnemonic('h');
-        jmAyuda.setText("Ayuda");
-
-        jmiAcercaDe.setMnemonic('a');
-        jmiAcercaDe.setText("Acerca De");
-        jmiAcercaDe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAcercaDeActionPerformed(evt);
-            }
-        });
-        jmAyuda.add(jmiAcercaDe);
-
-        menuBar.add(jmAyuda);
 
         setJMenuBar(menuBar);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
-        
-    }//GEN-LAST:event_jmiSalirActionPerformed
-
     private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
-        agregarComponenteAlCentro(new AdministrarClientesUI());
+        agregarComponenteAlCentro(new AdministrarVendedoresUI());
     }//GEN-LAST:event_jmiClientesActionPerformed
-
-    private void jmiAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAcercaDeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmiAcercaDeActionPerformed
 
     private void jmiProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProductosActionPerformed
         agregarComponenteAlCentro(new AdministrarProductosUI());
     }//GEN-LAST:event_jmiProductosActionPerformed
+
+    private void jmiOrdenesCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOrdenesCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiOrdenesCompraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,15 +133,10 @@ public class ProveedorUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jmAyuda;
-    private javax.swing.JMenuItem jmiAcercaDe;
     private javax.swing.JMenu jmiAdministrar;
-    private javax.swing.JMenu jmiArchivo;
     private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiOrdenesCompra;
     private javax.swing.JMenuItem jmiProductos;
-    private javax.swing.JMenuItem jmiSalir;
-    private javax.swing.JMenuItem jmiVolver;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

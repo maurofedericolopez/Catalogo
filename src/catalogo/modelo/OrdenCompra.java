@@ -1,6 +1,7 @@
 package catalogo.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -28,14 +29,16 @@ public class OrdenCompra implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
     @Id
+    @Column(name = "idOrdenCompra")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = true)
     private Long codigoEnvio;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private Boolean enviado;
     @ManyToOne
-    private Cliente cliente;
+    private Vendedor vendedor;
     @OneToMany(mappedBy = "OrdenCompra")
     private List<ProductoOrdenCompra> productosDeOrdenCompra;
 
@@ -61,7 +64,7 @@ public class OrdenCompra implements Serializable {
 
     @Override
     public String toString() {
-        return "catalogo.modelo.OrdenCompra[ id=" + getId() + " ]";
+        return fecha.toLocaleString();
     }
 
     /**
@@ -121,24 +124,28 @@ public class OrdenCompra implements Serializable {
     }
 
     /**
-     * @return the cliente
+     * @return the vendedor
      */
-    public Cliente getCliente() {
-        return cliente;
+    public Vendedor getVendedor() {
+        return vendedor;
     }
 
     /**
-     * @param cliente the cliente to set
+     * @param vendedor the vendedor to set
      */
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
     /**
      * @return the productosDeOrdenCompra
      */
-    public List<ProductoOrdenCompra> getProductosDeOrdenCompra() {
-        return productosDeOrdenCompra;
+    public ArrayList<ProductoOrdenCompra> getProductosDeOrdenCompra() {
+        ArrayList<ProductoOrdenCompra> productos = new ArrayList();
+        Object[] array = productosDeOrdenCompra.toArray();
+        for(Object o : array)
+            productos.add((ProductoOrdenCompra) o);
+        return productos;
     }
 
     /**

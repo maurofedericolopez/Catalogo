@@ -1,8 +1,8 @@
 package catalogo.vistas.modelo;
 
 import catalogo.Catalogo;
-import catalogo.controladores.ClientesController;
-import catalogo.modelo.Cliente;
+import catalogo.controladores.JPA.VendedorJpaController;
+import catalogo.modelo.Vendedor;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,21 +12,22 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Mauro Federico Lopez
  */
-public class ClienteTableModel extends AbstractTableModel implements Observer {
+public class VendedorTableModel extends AbstractTableModel implements Observer {
 
     private String[] columnas = {"Apellido", "Nombre", "Correo", "Teléfono", "Username"};
-    private ArrayList<Cliente> clientes;
-    private ClientesController controlador;
+    private ArrayList<Vendedor> vendedor = new ArrayList();
+    private VendedorJpaController vendedorJpaController;
 
-    public ClienteTableModel() {
+    public VendedorTableModel() {
         super();
-        controlador = Catalogo.clientesController;
-        clientes = controlador.obtenerClientes();
+        vendedorJpaController = Catalogo.getVendedorJpaController();
+        vendedorJpaController.addObserver(this);
+        vendedor = vendedorJpaController.obtenerVendedores();
     }
 
     @Override
     public int getRowCount() {
-        return clientes.size();
+        return vendedor.size();
     }
 
     @Override
@@ -38,15 +39,15 @@ public class ClienteTableModel extends AbstractTableModel implements Observer {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex) {
             case 0 :
-                return clientes.get(rowIndex).getApellido();
+                return vendedor.get(rowIndex).getApellido();
             case 1 :
-                return clientes.get(rowIndex).getNombre();
+                return vendedor.get(rowIndex).getNombre();
             case 2 :
-                return clientes.get(rowIndex).getCorreo();
+                return vendedor.get(rowIndex).getCorreo();
             case 3 :
-                return clientes.get(rowIndex).getTelefono();
+                return vendedor.get(rowIndex).getTelefono();
             case 4 :
-                return clientes.get(rowIndex).getUsername();
+                return vendedor.get(rowIndex).getUsername();
             default:
                 return null;
         }
@@ -82,8 +83,12 @@ public class ClienteTableModel extends AbstractTableModel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        clientes = controlador.obtenerClientes();
+        vendedor = vendedorJpaController.obtenerVendedores();
         fireTableDataChanged();
+    }
+
+    public Vendedor obtenerCliente(Integer filaSeleccionada) {
+        return vendedor.get(filaSeleccionada);
     }
 
 }
