@@ -23,9 +23,9 @@ public class OrdenDeCompraJpaController extends Observable implements Serializab
     private Vendedor miVendedor = null;
     private ArrayList<ProductoOrdenCompra> productosDeOrdenDeCompra = new ArrayList();
 
-    public OrdenDeCompraJpaController(Vendedor cliente) {
+    public OrdenDeCompraJpaController(Vendedor miVendedor) {
         this.emf = Catalogo.getEmf();
-        this.miVendedor = cliente;
+        this.miVendedor = miVendedor;
     }
 
     private EntityManagerFactory emf = null;
@@ -377,10 +377,22 @@ public class OrdenDeCompraJpaController extends Observable implements Serializab
     }
 
     public void agregarProducto(Producto producto, Long cantidad) {
-        ProductoOrdenCompra productoOrdenCompra = new ProductoOrdenCompra();
-        productoOrdenCompra.setProducto(producto);
-        productoOrdenCompra.setCantidad(cantidad);
-        productosDeOrdenDeCompra.add(null);
+        Iterator<ProductoOrdenCompra> i = productosDeOrdenDeCompra.iterator();
+        ProductoOrdenCompra productoOrdenCompra = null;
+        while(i.hasNext()) {
+            ProductoOrdenCompra p = i.next();
+            if(p.getProducto() == producto) {
+                productoOrdenCompra = p;
+            }
+        }
+        if (productoOrdenCompra == null) {
+            productoOrdenCompra = new ProductoOrdenCompra();
+            productoOrdenCompra.setProducto(producto);
+            productoOrdenCompra.setCantidad(cantidad);
+            productosDeOrdenDeCompra.add(productoOrdenCompra);
+        } else {
+            productoOrdenCompra.setCantidad(productoOrdenCompra.getCantidad() + cantidad);
+        }
     }
 
     public void cancelarOrdenDeCompraEnCurso() {

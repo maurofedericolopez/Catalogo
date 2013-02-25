@@ -62,7 +62,6 @@ public class MisDatosUI extends javax.swing.JPanel {
 
         etiquetaNombreUsuario.setText("Nombre de usuario");
 
-        campoNombreUsuario.setBackground(new java.awt.Color(255, 255, 255));
         campoNombreUsuario.setEditable(false);
 
         etiquetaContraseña.setText("Contraseña");
@@ -86,7 +85,7 @@ public class MisDatosUI extends javax.swing.JPanel {
                     .addComponent(etiquetaTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(etiquetaCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(etiquetaNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(etiquetaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etiquetaApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(campoApellido)

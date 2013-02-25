@@ -39,7 +39,7 @@
                   <Component id="etiquetaTelefono" alignment="1" max="32767" attributes="0"/>
                   <Component id="etiquetaCorreo" alignment="1" max="32767" attributes="0"/>
                   <Component id="etiquetaNombre" alignment="1" max="32767" attributes="0"/>
-                  <Component id="etiquetaApellido" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="etiquetaApellido" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">

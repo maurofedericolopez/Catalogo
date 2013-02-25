@@ -25,9 +25,11 @@ public class OrdenDeCompraActualUI extends javax.swing.JPanel {
     public OrdenDeCompraActualUI(OrdenDeCompraJpaController ordenDeCompraJpaController) {
         this();
         this.ordenDeCompraJpaController = ordenDeCompraJpaController;
-        this.ordenDeCompraJpaController.obtenerProductosOrdenDeCompraEnCurso();
+        ArrayList<ProductoOrdenCompra> productosOrdenDeCompraEnCurso = this.ordenDeCompraJpaController.obtenerProductosOrdenDeCompraEnCurso();
         productoOrdenDeCompraTableModel = new ProductoOrdenDeCompraTableModel();
+        productoOrdenDeCompraTableModel.setProductosOrdenDeCompra(productosOrdenDeCompraEnCurso);
         tablaProductosOrdenCompra.setModel(productoOrdenDeCompraTableModel);
+        
     }
 
     /**
@@ -140,7 +142,7 @@ public class OrdenDeCompraActualUI extends javax.swing.JPanel {
             productoOrdenDeCompraTableModel.setProductosOrdenDeCompra(productosOrdenDeCompraEnCurso);
             JOptionPane.showMessageDialog(null, "Se ha completado la compra de productos.", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonComprarOrdenCompraActionPerformed
 

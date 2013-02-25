@@ -31,8 +31,7 @@ public class ProveedorUI extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         jmiAdministrar = new javax.swing.JMenu();
         jmiProductos = new javax.swing.JMenuItem();
-        jmiClientes = new javax.swing.JMenuItem();
-        jmiOrdenesCompra = new javax.swing.JMenuItem();
+        jmiVendedores = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proveedor");
@@ -53,23 +52,14 @@ public class ProveedorUI extends javax.swing.JFrame {
         });
         jmiAdministrar.add(jmiProductos);
 
-        jmiClientes.setMnemonic('y');
-        jmiClientes.setText("Clientes");
-        jmiClientes.addActionListener(new java.awt.event.ActionListener() {
+        jmiVendedores.setMnemonic('y');
+        jmiVendedores.setText("Vendedores");
+        jmiVendedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiClientesActionPerformed(evt);
+                jmiVendedoresActionPerformed(evt);
             }
         });
-        jmiAdministrar.add(jmiClientes);
-
-        jmiOrdenesCompra.setMnemonic('p');
-        jmiOrdenesCompra.setText("Órdenes de Compra");
-        jmiOrdenesCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiOrdenesCompraActionPerformed(evt);
-            }
-        });
-        jmiAdministrar.add(jmiOrdenesCompra);
+        jmiAdministrar.add(jmiVendedores);
 
         menuBar.add(jmiAdministrar);
 
@@ -78,17 +68,13 @@ public class ProveedorUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
+    private void jmiVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVendedoresActionPerformed
         agregarComponenteAlCentro(new AdministrarVendedoresUI());
-    }//GEN-LAST:event_jmiClientesActionPerformed
+    }//GEN-LAST:event_jmiVendedoresActionPerformed
 
     private void jmiProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProductosActionPerformed
         agregarComponenteAlCentro(new AdministrarProductosUI());
     }//GEN-LAST:event_jmiProductosActionPerformed
-
-    private void jmiOrdenesCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOrdenesCompraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmiOrdenesCompraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,9 +120,8 @@ public class ProveedorUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jmiAdministrar;
-    private javax.swing.JMenuItem jmiClientes;
-    private javax.swing.JMenuItem jmiOrdenesCompra;
     private javax.swing.JMenuItem jmiProductos;
+    private javax.swing.JMenuItem jmiVendedores;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

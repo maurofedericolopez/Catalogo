@@ -1,11 +1,10 @@
 package catalogo.vistas;
 
 import catalogo.Catalogo;
-import catalogo.controladores.JPA.VendedorJpaController;
 import catalogo.controladores.JPA.OrdenDeCompraJpaController;
+import catalogo.controladores.JPA.VendedorJpaController;
 import catalogo.modelo.Vendedor;
 import java.awt.BorderLayout;
-import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
@@ -16,14 +15,14 @@ import javax.swing.JOptionPane;
 public class VendedorUI extends javax.swing.JFrame {
 
     private OrdenDeCompraJpaController ordenDeCompraJpaController;
-    private VendedorJpaController clienteJpaController;
+    private VendedorJpaController vendedorJpaController;
 
     /**
      * Creates new form VendedorUI
      */
     public VendedorUI() {
         initComponents();
-        clienteJpaController = Catalogo.getVendedorJpaController();
+        vendedorJpaController = Catalogo.getVendedorJpaController();
         agregarComponenteAlCentro(panelIniciarSesion);
     }
 
@@ -196,8 +195,8 @@ public class VendedorUI extends javax.swing.JFrame {
         try {
             String username = campoNombreDeUsuario.getText();
             String password = campoContraseña.getText();
-            Vendedor cliente = clienteJpaController.iniciarSesion(username, password);
-            ordenDeCompraJpaController = new OrdenDeCompraJpaController(cliente);
+            Vendedor vendedor = vendedorJpaController.iniciarSesion(username, password);
+            ordenDeCompraJpaController = new OrdenDeCompraJpaController(vendedor);
             campoNombreDeUsuario.setText("");
             campoContraseña.setText("");
             limpiarCentro();

@@ -32,7 +32,6 @@ public class OrdenCompra implements Serializable {
     @Column(name = "idOrdenCompra")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = true)
     private Long codigoEnvio;
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -40,7 +39,7 @@ public class OrdenCompra implements Serializable {
     @ManyToOne
     private Vendedor vendedor;
     @OneToMany(mappedBy = "OrdenCompra")
-    private List<ProductoOrdenCompra> productosDeOrdenCompra;
+    private List<ProductoOrdenCompra> productosDeOrdenCompra = new ArrayList();
 
     @Override
     public int hashCode() {

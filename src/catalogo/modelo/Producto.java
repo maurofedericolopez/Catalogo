@@ -33,7 +33,7 @@ public class Producto implements Serializable {
     private String codigo;
     @Column(length = 50, nullable = true)
     private String nombre;
-    @Column(length = 150, nullable = true)
+    @Column(length = 255, nullable = true)
     private String descripcion;
     @Column(nullable = false)
     private Double precio;
